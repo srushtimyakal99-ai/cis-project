@@ -1,17 +1,36 @@
 import {useEffect,useState} from 'react';
-const photos=[['campus','campus','School building'],['sports','sports-day','Annual Sports Day'],['sports','sports1','High School Sports Meet 2025-26'],
- ['events','event1','Students on stage with certificates'],['events','event2','Programme with flag and students in uniform'],['events','event3','Stage programme with guests'],
- ['events','event4','Students in costume at a celebration'],['events','event5','Ribbon cutting with students in costume']];
-const filters=[['all','All'],['campus','Campus'],['sports','Sports'],['events','Events']];
+
+// These filenames must match the photos in your client/public/images folder
+const photos=['library.jpg','computer-lab.jpg','classroom-tech.jpg','school-buses.jpg','campus-security.jpg','playground.jpg','pool.jpg'];
+const videos=['v18.mp4','v19.mp4','v20.mp4','v21.mp4','v22.mp4','v23.mp4','v24.mp4'];
+
+const items=[
+  ...photos.map(f=>({type:'photo',src:`/images/${f}`,label:f.replace(/\.\w+$/,'').replace(/[-_]/g,' ')})),
+  ...videos.map(f=>({type:'video',src:`/videos/${f}`,label:'School video '+f.replace(/\D/g,'')})),
+];
+
 export default function Gallery(){
-  const [f,setF]=useState('all'),[big,setBig]=useState(null);
-  useEffect(()=>{const k=e=>e.key==='Escape'&&setBig(null);addEventListener('keydown',k);return()=>removeEventListener('keydown',k)},[]);
+  const [filter,setFilter]=useState('all'),[open,setOpen]=useState(null);
+  useEffect(()=>{const k=e=>e.key==='Escape'&&setOpen(null);addEventListener('keydown',k);return()=>removeEventListener('keydown',k)},[]);
+  const shown=items.filter(i=>filter==='all'||i.type===filter);
   return <>
-    <section id="gallery"><div className="wrap"><h2>Photo gallery</h2>
-      <div className="filters">{filters.map(([k,t])=><button key={k} className={f===k?'on':''} onClick={()=>setF(k)}>{t}</button>)}</div>
-      <div className="grid">{photos.filter(p=>f==='all'||p[0]===f).map(([c,i,a])=><div className="ph" key={i} onClick={()=>setBig([i,a])}><img src={`/images/${i}.jpg`} alt={a} loading="lazy"/></div>)}</div></div></section>
-    <section className="alt"><div className="wrap"><h2>Videos</h2><div className="grid">
-      {[18,19,20,21,22,23,24].map(i=><video key={i} controls preload="metadata" playsInline style={{width:'100%',borderRadius:14}}><source src={`/videos/v${i}.mp4`} type="video/mp4"/></video>)}</div></div></section>
-    {big&&<div id="lb" className="open" onClick={()=>setBig(null)}><button aria-label="Close">×</button><div className="ph" onClick={e=>e.stopPropagation()}><img src={`/images/${big[0]}.jpg`} alt={big[1]}/></div></div>}
+    <div className="filters">
+      {[['all','All'],['photo','Photos'],['video','Videos']].map(([k,t])=>
+        <button key={k} className={filter===k?'on':''} onClick={()=>setFilter(k)}>{t}</button>)}
+    </div>
+    <div className="grid">
+      {shown.map(i=><div key={i.src} className="ph" data-label={i.type==='photo'?i.label:''} role="button" tabIndex={0}
+          onClick={()=>setOpen(i)} onKeyDown={e=>e.key==='Enter'&&setOpen(i)}>
+        {i.type==='photo'
+          ?<img src={i.src} alt={i.label} loading="lazy" onError={e=>e.currentTarget.remove()}/>
+          :<span>▶ {i.label}</span>}
+      </div>)}
+    </div>
+    <div id="lb" className={open?'open':''} onClick={()=>setOpen(null)}>
+      <button aria-label="Close" onClick={()=>setOpen(null)}>×</button>
+      {open&&(open.type==='photo'
+        ?<div className="ph"><img src={open.src} alt={open.label}/></div>
+        :<video className="ph" src={open.src} controls autoPlay/>)}
+    </div>
   </>;
 }
