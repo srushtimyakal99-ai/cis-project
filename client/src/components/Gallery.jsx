@@ -1,11 +1,11 @@
 import {useEffect,useState} from 'react';
 
-// These filenames must match the photos in your client/public/images folder
-const photos=['library.jpg','computer-lab.jpg','classroom-tech.jpg','school-buses.jpg','campus-security.jpg','playground.jpg','pool.jpg'];
+// Only the pool photo is included here now
+const photos=['pool.jpg'];
 const videos=['v18.mp4','v19.mp4','v20.mp4','v21.mp4','v22.mp4','v23.mp4','v24.mp4'];
 
 const items=[
-  ...photos.map(f=>({type:'photo',src:`/images/${f}`,label:f.replace(/\.\w+$/,'').replace(/[-_]/g,' ')})),
+  ...photos.map(f=>({type:'photo',src:`/images/${f}`,label:'Swimming Pool'})),
   ...videos.map(f=>({type:'video',src:`/videos/${f}`,label:'School video '+f.replace(/\D/g,'')})),
 ];
 
