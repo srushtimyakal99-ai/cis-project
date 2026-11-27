@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 const features=[
-  ['📚','Strong academics','English-medium instruction from pre-primary to [Grade X] with continuous assessment.'],
+  ['📚','Strong academics','English-medium instruction from pre-primary to Grade X with continuous assessment.'],
   ['👩‍🏫','Experienced faculty','Trained teachers, small classes and individual attention for every child.'],
   ['🔬','Labs & library','Science, maths and computer labs plus a well-stocked reading library.'],
   ['🚌','Safe transport','Bus routes covering Yadgir town and nearby villages.'],
@@ -13,7 +13,7 @@ export default function Home(){
       <div className="wrap">
         <h1>Traditional Values, Modern Outlook</h1>
         <p>Centurion International School, Yadgir — an English-medium school run by Margadarshana Education Trust (R), helping children grow into confident, kind and capable learners.</p>
-        <Link className="btn" to="/admissions">Admissions open</Link>
+        <Link className="btn" to="/admissions">Admissions Open</Link>
         <Link className="btn ghost" to="/contact">Talk to us</Link>
       </div>
     </section>
@@ -27,8 +27,8 @@ export default function Home(){
     <section className="alt">
       <div className="wrap two">
         <div>
-          <h2>Admissions [2026–27]</h2>
-          <p>Applications are open for pre-primary to [Grade X]. Seats are limited and filled after an informal interaction with the child and parents.</p>
+          <h2>Admissions 2026–27</h2>
+          <p>Applications are open for pre-primary to Grade X. Seats are limited and filled after an informal interaction with the child and parents.</p>
           <p className="note">Please bring the child's birth certificate, Aadhaar, last report card and two passport photos.</p>
           <Link className="btn dark" to="/admissions">See fees and apply</Link>
         </div>
@@ -43,10 +43,7 @@ export default function Home(){
           <h2>Take a look around</h2>
           <p className="lead">A short video from our campus.</p>
           <video className="ph" src="/videos/v18.mp4" controls preload="metadata"/>
-          
-          {/* Added the playground photo here as requested */}
           <img src="/images/playground.jpg" alt="School Playground" style={{borderRadius:'var(--r)', marginTop:'20px', width:'100%', objectFit:'cover'}}/>
-          
         </div>
         <div>
           <h2>Visit us</h2>

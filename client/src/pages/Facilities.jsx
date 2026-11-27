@@ -12,38 +12,68 @@ const facilities=[
 export default function Facilities(){
   return <>
     <section className="page-top"><div className="wrap">
-      <h1>Facilities &amp; Gallery</h1>
+      <h1>Facilities, Activities &amp; Gallery</h1>
       <p>Life on campus.</p>
     </div></section>
     
     <section><div className="wrap">
-      <h2>Campus facilities</h2>
+      <h2>Facilities</h2>
       <p className="lead">Everything below is on the same campus on Chittapur Road, so children never need to travel between sites.</p>
       
       <div className="grid">
         {facilities.map(([ic,t,d,img])=>(
           <div className="card" key={t} style={{display:'flex', flexDirection:'column', padding:'0', overflow:'hidden'}}>
-            
-            {/* This is the image box at the top of the card */}
             <div style={{width:'100%', height:'220px'}}>
               <img src={`/images/${img}`} alt={t} style={{width:'100%', height:'100%', objectFit:'cover'}} />
             </div>
-
-            {/* This is the text below the image */}
             <div style={{padding:'20px'}}>
               <div className="ic" style={{fontSize:'2rem', marginBottom:'8px'}}>{ic}</div>
               <h3>{t}</h3>
               <p>{d}</p>
             </div>
-
           </div>
         ))}
       </div>
     </div></section>
-    
+
     <section className="alt"><div className="wrap">
+      <h2>Activities &amp; events</h2>
+      <p className="lead">Learning beyond the classroom.</p>
+      <div className="grid">
+        <div className="card">
+          <h3>Annual Day</h3>
+          <p>A grand celebration of our students' talents in dance, drama, and music. Held every year in December.</p>
+        </div>
+        <div className="card">
+          <h3>Sports Week</h3>
+          <p>A week dedicated to athletics, team sports, and physical fitness, culminating in our Annual Sports Day.</p>
+        </div>
+        <div className="card">
+          <h3>Science Exhibitions</h3>
+          <p>Students showcase their innovative science projects and working models to parents and judges.</p>
+        </div>
+        <div className="card">
+          <h3>Debates</h3>
+          <p>Regular debate and elocution competitions to build confidence, public speaking, and critical thinking.</p>
+        </div>
+        <div className="card">
+          <h3>Quiz Competitions</h3>
+          <p>Inter-house quizzes on general knowledge, science, and current affairs to encourage healthy competition.</p>
+        </div>
+        <div className="card">
+          <h3>Cultural Activities</h3>
+          <p>Celebrations of festivals, traditional days, and cultural events to keep students connected to their roots.</p>
+        </div>
+        <div className="card">
+          <h3>Student Celebrations</h3>
+          <p>Special assemblies and activities to celebrate Independence Day, Republic Day, and other national events.</p>
+        </div>
+      </div>
+    </div></section>
+    
+    <section><div className="wrap">
       <h2>Photo &amp; video gallery</h2>
-      <p className="lead">Tap any photo or video to open it. Press Escape or tap outside to close.</p>
+      <p className="lead">Tap any photo or video to open it.</p>
       <Gallery/>
     </div></section>
   </>;
